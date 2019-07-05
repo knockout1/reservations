@@ -23,7 +23,7 @@ public class CourtReservationController {
 
     @GetMapping("/{id}")
     public String geReservation(@PathVariable String id) {
-        return "Reservation for court " + id;
+        return "Reservation for court " + id + ": " + reservationRepository.findByCourtId(Integer.valueOf(id));
     }
 
     @GetMapping("/")
