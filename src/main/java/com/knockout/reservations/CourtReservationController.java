@@ -3,6 +3,7 @@ package com.knockout.reservations;
 import com.knockout.reservations.model.Reservation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,4 +43,9 @@ public class CourtReservationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(reservation);
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity deleteReservation(@RequestBody Integer reservationId) {
+        reservationRepository.deleteById(reservationId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
