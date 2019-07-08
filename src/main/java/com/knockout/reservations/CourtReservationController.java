@@ -1,6 +1,8 @@
 package com.knockout.reservations;
 
 import com.knockout.reservations.model.Reservation;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,19 +26,20 @@ public class CourtReservationController {
     }
 
     @GetMapping("/get/{id}")
-    public String geReservation(@PathVariable String id) {
-        return "Reservation for court " + id + ": " + reservationRepository.findByCourtId(Integer.valueOf(id));
+    public ResponseEntity geReservation(@PathVariable String id) {
+        return ResponseEntity
+                .ok("Reservation for court " + id + ": " + reservationRepository.findByCourtId(Integer.valueOf(id)));
     }
 
     @GetMapping("/getAll")
-    public String getAllReservations() {
-        return "All reservations " + reservationRepository.findAll().toString();
+    public ResponseEntity getAllReservations() {
+        return ResponseEntity.ok("All reservations " + reservationRepository.findAll().toString());
     }
 
     @PostMapping("/reserve")
-    public String reserveCourt(@RequestBody Reservation reservation) {
+    public ResponseEntity reserveCourt(@RequestBody Reservation reservation) {
         reservationRepository.save(reservation);
-        return "OK" + reservation;
+        return ResponseEntity.status(HttpStatus.CREATED).body(reservation);
     }
 
 }
