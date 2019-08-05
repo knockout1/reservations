@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.MalformedURLException;
-import java.util.Date;
 
 @RequestMapping("/court")
 @RestController
@@ -27,9 +26,6 @@ public class CourtReservationController {
     public CourtReservationController(ReservationRepository reservationRepository, SecurityService securityService) {
         this.reservationRepository = reservationRepository;
         this.securityService = securityService;
-
-        reservationRepository.save(new Reservation(1, 1, new Date()));
-        reservationRepository.save(new Reservation(2, 2, new Date()));
     }
 
     @GetMapping("/get/{id}")

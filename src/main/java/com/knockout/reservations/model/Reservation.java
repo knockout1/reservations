@@ -1,10 +1,11 @@
 package com.knockout.reservations.model;
 
+import org.joda.time.DateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
 
 @Entity
 public class Reservation {
@@ -13,19 +14,19 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer reservationId;
     private Integer courtId;
-    private Date dateTime;
+    private DateTime dateTime;
 
     protected Reservation() {
 
     }
 
-    public Reservation(Integer reservationId, Integer courtId, Date dateTime) {
+    public Reservation(Integer reservationId, Integer courtId, DateTime dateTime) {
         this.reservationId = reservationId;
         this.courtId = courtId;
         this.dateTime = dateTime;
     }
 
-    public Reservation(Integer courtId, Date dateTime) {
+    public Reservation(Integer courtId, DateTime dateTime) {
         this.courtId = courtId;
         this.dateTime = dateTime;
     }
@@ -38,11 +39,11 @@ public class Reservation {
         this.reservationId = reservationId;
     }
 
-    public Date getDateTime() {
+    public DateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(DateTime dateTime) {
         this.dateTime = dateTime;
     }
 
